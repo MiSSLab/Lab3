@@ -28,8 +28,6 @@ Exercise 3: Pseudorandom number generators}
 \begin{document}
 \newgeometry{margin=1.8cm}
 \maketitle
-\textbf{Tester:} Paweł Cejrowski
-
 
 
 \section{Generator 1}
@@ -51,10 +49,10 @@ Minimum value of period is equal $1$, when both $x_0$ and $x_1$ are equal $0$. B
 $( 2^k - 1 ) \cdot k = ( 2^2 - 1) \cdot 2 = 6$, but this value of period was not found during tests. Found $3$ when $x_0$ or $x_1$ was different from 0(e.g. $x_0 = 0$ and $x_1 = 16$).
 
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
-Minimum possible mean value is equal $0$, when both $x_0$ and $x_1$ are equal $0$. Maximum founded mean value within period is equal $\frac{2}{3} \cdot (2^{32} - 1) = 2863311530$, when $x_0 = x_1 = 2^{32} -1$
+Minimum possible mean value is equal $0$, when both $x_0$ and $x_1$ are equal $0$. Maximum found mean value within period is equal $\frac{2}{3} \cdot (2^{32} - 1) = 2863311530$, when $x_0 = x_1 = 2^{32} -1$
 
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
-Minimum possible variance value is equal $0$, when both $x_0$ and $x_1$ are equal $0$. Maximum founded variance value within period is equal $4.0992764589155E+18$, when $x_0 = x_1 = 2^{32} -1$
+Minimum possible variance value is equal $0$, when both $x_0$ and $x_1$ are equal $0$. Maximum found variance value within period is equal $4.0992764589155E+18$, when $x_0 = x_1 = 2^{32} -1$
 
  \item \textbf{Does the generator meet the requirements that good generators should satisfy? If not, which of the requirements are not satisfied and why?} \\
   The generator does \textbf{not} meet all requirements for good generators. \\
@@ -103,7 +101,7 @@ Below corner cases were found by $10000$ generator executions with randomized $n
 Minimum value of period is equal $m-n + 1$ for $m<100000$.  Based on lecture, we know that maximum value of period is $2^30$ and is reached when $x_0$ is odd.
 
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
-Minimum mean value for longer ranges($m-n>50$) is bigger than $1e9$. Maximum founded mean value is $2373236302.0435$, but still it is only empirical.
+Minimum mean value for longer ranges($m-n>50$) is bigger than $1e9$. Maximum found mean value is $2373236302.0435$, but still it is only empirical.
 
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
 Minimum and maximum variance value for longer ranges($m-n>50$) is bigger than $1e18$.
@@ -216,7 +214,7 @@ Minimum and maximum values were over $1.7e18$ in tests.
   \multicolumn{1}{|c|}{}                          & max & *$4.0992764589155E+18$ & $x_0=x_1=2^{32}-1$     & \multicolumn{2}{|c|}{\xmark} & \multicolumn{2}{|c|}{\xmark} \\ \hline
   \end{tabular}
 \end{table}
-* - founded during tests(not analytically checked)
+* - found during tests(not analytically checked)
 \section{Good generator requirements}
 \begin{table}[ht!]
 \centering
