@@ -33,7 +33,7 @@ Exercise 3: Pseudorandom number generators}
 
 GFSR (generalized feedback shift register) with parameters: $j=1$, $k=2$, $m=2^{32}$.
 \subsection{Equation}
-Numbers are generated according to equation \ref{eq:1}.
+Numbers are generated according to equation (\ref{eq:1}).
 \begin{equation}
 \label{eq:1}
   x_n = x_{n-1} \oplus x_{n-2}\ \ (mod\ 2^{32})
@@ -86,14 +86,14 @@ Minimum possible variance value is equal $0$, when both $x_0$ and $x_1$ are equa
 \section{Generator 2}
 LCG(linear congruential generator) with parameters $a=3$, $c=-1$, $m=2^{32}$.
 \subsection{Equation}
-Numbers are generated according to equation \ref{eq:2}.
+Numbers are generated according to equation (\ref{eq:2}).
 \begin{equation}
 \label{eq:2}
   x_n = 3 \cdot x_{n-1} - 1\ \ (mod\ 2^{32}) 
 \end{equation}
 where ${x_0}$ is given. \\
 
-Equation \ref{eq:2} might be modified: \\
+Equation (\ref{eq:2}) might be modified: \\
  $x_1 = 3 \cdot x_0 -1$ \\
  $x_2 = 3 \cdot (3 \cdot x_0 - 1) -1$ \\
  $x_3 = 3 \cdot (3 \cdot (3 \cdot x_0 -1) - 1) -1$ \\
@@ -103,12 +103,12 @@ Equation \ref{eq:2} might be modified: \\
  to finally achieve to following formula:
 \begin{equation}
  \label{eq:22}
- x_n = 3^n \cdot (x_0 - \frac{1}{2}) + \frac{1}{2} (mod 2^{32})
+ x_n = 3^n \cdot (x_0 - \frac{1}{2}) + \frac{1}{2} (mod\ 2^{32})
  \end{equation}
 which might be generalized to:
 \begin{equation}
  \label{eq:23}
- x_j = 3^{j-i} \cdot (x_i - \frac{1}{2}) + \frac{1}{2} (mod 2^{32})
+ x_j = 3^{j-i} \cdot (x_i - \frac{1}{2}) + \frac{1}{2} (mod\ 2^{32})
  \end{equation}
  , where $j>i$.
 
@@ -123,11 +123,13 @@ Minimum value of period was not found, because in tests it was always of the len
 
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
 Minimum mean value for period cannot be found empirically. \\
-Miminum mean value can be estimated for $x_0 = 0$ by number $\sum{i=0}{i=2^{30}}\frac{-\frac{1}{2} \cdot 3^{2^i}(mod 2^{32})}{2^{30}}$.
+Miminum mean value can be estimated for $x_0 = 0$ by number $$\sum_{i=0}^{2^{30}}\frac{-\frac{1}{2} \cdot 3^{i}(mod 2^{32})}{2^{30}}$$.
 Maximum found mean value is $2373236302.0435$ for seed $28208$, but still it is only empirical.
 
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
-Minimum and maximum variance cannot be correctly set, because it is too big and difficult to estimate. For all tests(with not full periods)it was over $10^{18}$.
+Minimum and maximum variance cannot be correctly set, because it is too big and difficult to estimate. \\
+However, $(\frac{1}{2} \cdot 2^{32})^2 = 2^{62}$ is an reasonable upper bound.
+\\ For all tests(with not full periods)it was over $10^{18}$.
 
  \item \textbf{Does the generator meet the requirements that good generators should satisfy? If not, which of the requirements are not satisfied and why?} \\
   The generator meets all requirements for good generators. \\
@@ -138,9 +140,9 @@ Minimum and maximum variance cannot be correctly set, because it is too big and 
     \item \textbf{subsequences of the produced sequence are mutually independent} \\
     Not satisfied: despite the fact that chi-square test was always satisfied in tests on the $\alpha = 0.05$, the consecutive numbers are autocorrelated, thus they are not independent.
     \item \textbf{long period, with length at least $\sqrt{l}$, where $l$ is the length of the used subsequence} \\
-    Satisfied: periods are long, because function \ref{eq:22} is monotonous and increasing.
-    \item \textbf{the ability to make jumps, i.e. to compute $x_j$ from $x_i$ for every $j > i$} \\
-    Satisfied. jumps can be made based on equation \ref{eq:23}.
+    Not satisfied: periods are not long enough for $l>2^{60}$, bacause maximum period is equal $2^{30}$.
+    \item \textbf{the ability to make jumps, i.e. to compute $x_j$ from $x_i$ for every $j > i$} \\ 
+    Satisfied. jumps can be made based on equation (\ref{eq:23}).
     \item \textbf{repeatable, portable and efficient} \\
     Satisfied: generator is deterministic and for the same seeds returnes exactly the same values. It is portable, because it can be implemented in almost every environment and is efficient, because it does not require any time-consuming operations.   
    \end{enumerate}
@@ -150,9 +152,9 @@ Minimum and maximum variance cannot be correctly set, because it is too big and 
  Let's consider characteristics of generator for seed equal 0 suitable for use in the cryptography:
   \begin{enumerate}
    \item \textbf{it must be impossible to predict its seed and internal state even if we have a large sample of the numbers it produced} \\
-   For this internal state can be calculated based on formula \ref{eq:22}.
+   For this internal state can be calculated based on formula (\ref{eq:22}).
    \item \textbf{it must have a long period for every possible value of its seed} \\
-   Satisfied: as described above.
+   Not satisfied: as described above.
    \item \textbf{it should be unpredictable to the public, i.e. the probability of predicting the subsequent numbers should be low even if have a large sample of the numbers it produced} \\
    Not satisfied: the formula is easy to guess based on consecutive numbers.
    \end{enumerate}
@@ -162,7 +164,7 @@ Minimum and maximum variance cannot be correctly set, because it is too big and 
 
 \section{Generator 3}
 \subsection{Equation}
-Numbers are generated according to equation \ref{eq:3}.
+Numbers are generated according to equation (\ref{eq:3}).
 \begin{equation}
 \label{eq:3}
 \begin{cases}
@@ -172,27 +174,31 @@ x'_n = x'_{n-1} \oplus x'_{n-2}\ \ (mod\ 2^{32}) \\ x''_n = 3 \cdot x_{n-1}'' - 
 where ${x'_0}$, ${x'_1}$ and ${x''_0}$ are given.
 
 \subsection{Questions}
-Below corner cases were found by $10000$ generator executions with randomized range $[n,m]$ and seeds ${x'_0}$, ${x'_1}$, ${x''_0}$ by shell \texttt{\$RANDOM}, which generates pseudorandom number from range $0$-$32767$.
+Below corner cases were found by $10000$ generator executions with randomized range $[n,m]$ and seeds ${x'_0}$, ${x'_1}$, ${x''_0}$ by shell \texttt{\$RANDOM}, which generates pseudorandom number from range $[0,32767]$.
 \begin{itemize}
  \item \textbf{What is the minimum(maximum) possible value of the period? Give an example of initial values for which the period is small(large).} \\ 
 Minimum value of period is equal 1, when all seeds are equal 0. Maximum period was not found, because it was greater than $10^9$ for not full evaluation. It is shorter than $2^32$.
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
-Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. Maximum from tests: $2210235410.0306$, seed: $23340$.
+Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
+Maximum mean value can be estimated for $x_0 = 0$ by number $\sum_{i=0}^{2^{30}}\frac{-\frac{1}{2} \cdot 3^{2^i}(mod 2^{32})}{2^{30}}$. \\
+Maximum from tests: $2210235410.0306$, seed: $23340$.
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
-Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. Maximum from tests: $1.7230232475461\cdot 10^{18}$, seed: $31941$.
+Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
+However, $$(\frac{1}{2} \cdot 2^{32})^2 = 2^{62}$$ is an reasonable upper bound. \\
+Maximum from tests: $1.7230232475461\cdot 10^{18}$, seed: $31941$.
 
  \item \textbf{Does the generator meet the requirements that good generators should satisfy? If not, which of the requirements are not satisfied and why?} \\
   The generator does \textbf{not} meet all requirements for good generators. \\
   Characteristics of good generators:
    \begin{enumerate}
     \item \textbf{generated numbers distributions are as close as possible to the desired one} \\
-    Satisfied: $K^+$ and $K^-$ satisfied in $99.9\%$ cases with the $\alpha = 0.011$. All satisfied with $\alpha = 0.10$, with similar arguments as above.
+    Satisfied: $K^+$ and $K^-$ satisfied in $99.9\%$ cases with the $\alpha = 0.011$. All satisfied with $\alpha = 0.10$, with similar arguments as above. It is achieved due to many quasi-iterations over the modulo interval.
     \item \textbf{subsequences of the produced sequence are mutually independent} \\
-    Satisfied: chi-square always satisfied on the $\alpha = 0.05$. Cannot find any contrarguments because autocorrelation is removed by \texttt{xor} operation. 
+    Not satisfied: for $n=10000$ in chi-square test it's not satisfied, for seeds: $[29312, 19574, 5596]$.
     \item \textbf{long period, with length at least $\sqrt{l}$, where $l$ is the length of the used subsequence} \\
     Not satisfied: there is a combination of seeds that gives period of length 1 (seeds: 0, 0, 0).
     \item \textbf{the ability to make jumps, i.e. to compute $x_j$ from $x_i$ for every $j > i$} \\
-    Satisfied: it is possible to make jumps using short period of first equation and formula \ref{eq:23} for second generator.
+    Satisfied: it is possible to make jumps using short period of first equation and formula (\ref{eq:23}) for second generator.
     \item \textbf{repeatable, portable and efficient} \\
     Satisfied: generator is deterministic and for the same seeds returnes exactly the same values. It is portable, because it can be implemented in almost every environment and is efficient, because it does not require any time-consuming operations.   \end{enumerate}
  

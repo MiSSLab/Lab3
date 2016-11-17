@@ -3,6 +3,7 @@ set -e
 # set -xv 
 
 precision=4
+k_chi=${1}
 run() {
     number=$1
     shift
@@ -33,7 +34,7 @@ test() {
     echo "variance=$basic_variance"
     echo "period=$basic_period"
 
-    test_stats=$(cat test.dat | sed "s@\([^ ]*\)@\1/4294967296@g" | ../Lab2/lab2 ${precision})
+    test_stats=$(cat test.dat | sed "s@\([^ ]*\)@\1/4294967296@g" | ../Lab2/lab2 ${precision} ${k_chi})
     test_chi=$(echo ${test_stats} | awk '{print $1}')
     test_kplus=$(echo ${test_stats} | awk '{print $2}')
     test_kminus=$(echo ${test_stats} | awk '{print $3}')
@@ -46,5 +47,5 @@ test() {
 }
 
 echo "n,m,range,seed,seed2,seed3,mean,variance,period,chi,kp,km" > result3.csv
-run 1000 test
+run 2 test
 
