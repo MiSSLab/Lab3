@@ -123,7 +123,7 @@ Minimum value of period was not found, because in tests it was always of the len
 
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
 Minimum mean value for period cannot be found empirically. \\
-Miminum mean value can be estimated for $x_0 = 0$ by number $$\sum_{i=0}^{2^{30}}\frac{-\frac{1}{2} \cdot 3^{i}(mod 2^{32})}{2^{30}}$$.
+Miminum mean value can be estimated for $x_0 = 0$ by number $$\sum_{i=0}^{2^{30}}\frac{-\frac{1}{2} \cdot 3^{i} + \frac{1}{2}(mod 2^{32})}{2^{30}}$$.
 Maximum found mean value is $2373236302.0435$ for seed $28208$, but still it is only empirical.
 
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
@@ -177,10 +177,10 @@ where ${x'_0}$, ${x'_1}$ and ${x''_0}$ are given.
 Below corner cases were found by $10000$ generator executions with randomized range $[n,m]$ and seeds ${x'_0}$, ${x'_1}$, ${x''_0}$ by shell \texttt{\$RANDOM}, which generates pseudorandom number from range $[0,32767]$.
 \begin{itemize}
  \item \textbf{What is the minimum(maximum) possible value of the period? Give an example of initial values for which the period is small(large).} \\ 
-Minimum value of period is equal 1, when all seeds are equal 0. Maximum period was not found, because it was greater than $10^9$ for not full evaluation. It is shorter than $2^32$.
+Minimum value of period is equal 1, when all seeds are equal 0. Maximum period was not found, because it was greater than $10^9$ for not full evaluation. It is shorter than $2^{32}$.
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
 Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
-Maximum mean value can be estimated for $x_0 = 0$ by number $2^{32} \cdot \frac{1}{2} \cdot 2^{32} $. \\
+Minimum mean value can be estimated for $x_0 = 0$ by number $2^{32} \cdot \frac{1}{2} \cdot 2^{32} $. \\
 Maximum from tests: $2210235410.0306$, seed: $23340$.
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
 Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
