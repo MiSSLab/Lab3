@@ -180,7 +180,7 @@ Below corner cases were found by $10000$ generator executions with randomized ra
 Minimum value of period is equal 1, when all seeds are equal 0. Maximum period was not found, because it was greater than $10^9$ for not full evaluation. It is shorter than $2^32$.
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
 Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
-Maximum mean value can be estimated for $x_0 = 0$ by number $\sum_{i=0}^{2^{30}}\frac{-\frac{1}{2} \cdot 3^{2^i}(mod 2^{32})}{2^{30}}$. \\
+Maximum mean value can be estimated for $x_0 = 0$ by number $2^{32} \cdot \frac{1}{2} \cdot 2^{32} $. \\
 Maximum from tests: $2210235410.0306$, seed: $23340$.
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
 Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. \\
