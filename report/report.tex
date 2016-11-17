@@ -60,7 +60,7 @@ Minimum possible variance value is equal $0$, when both $x_0$ and $x_1$ are equa
     \item \textbf{generated numbers distributions are as close as possible to the desired one} \\
     Not satisfied: 3 or even 6 point distribution is not enough to be called uniform distribution within any interval.
     \item \textbf{subsequences of the produced sequence are mutually independent} \\
-    Not satisfied: each subsequence of length 3 contains the same 3 numbers.
+    Not satisfied: each subsequence of length 3 or 6 contains the same 3 or 6 numbers.
     \item \textbf{long period, with length at least $\sqrt{l}$, where $l$ is the length of the used subsequence} \\
     Not satisfied: short period with maximum length of 6.
     \item \textbf{the ability to make jumps, i.e. to compute $x_j$ from $x_i$ for every $j > i$} \\
@@ -103,12 +103,12 @@ Equation \ref{eq:2} might be modified: \\
  to finally achieve to following formula:
 \begin{equation}
  \label{eq:22}
- x_n = 3^n \cdot (x_0 - \frac{1}{2}) + \frac{1}{2}
+ x_n = 3^n \cdot (x_0 - \frac{1}{2}) + \frac{1}{2} (mod 2^{32})
  \end{equation}
 which might be generalized to:
 \begin{equation}
  \label{eq:23}
- x_j = 3^{j-i} \cdot (x_i - \frac{1}{2}) + \frac{1}{2}
+ x_j = 3^{j-i} \cdot (x_i - \frac{1}{2}) + \frac{1}{2} (mod 2^{32})
  \end{equation}
  , where $j>i$.
 
@@ -122,10 +122,12 @@ Below corner cases were found by $10000$ generator executions with randomized $n
 Minimum value of period was not found, because in tests it was always of the length of generated sequence (up to $10^8$).  Based on lecture, we know that maximum value of period is $2^{30}$ and is reached when $x_0$ is odd.
 
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
-Minimum mean value for period cannot be found, because minimum period is not set. Maximum found mean value is $2373236302.0435$ for seed $28208$, but still it is only empirical.
+Minimum mean value for period cannot be found empirically. \\
+Miminum mean value can be estimated for $x_0 = 0$ by number $\sum{i=0}{i=2^{30}}\frac{-\frac{1}{2} \cdot 3^{2^i}(mod 2^{32})}{2^{30}}$.
+Maximum found mean value is $2373236302.0435$ for seed $28208$, but still it is only empirical.
 
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
-Minimum and maximum variance cannot be correctly set, because it is too big. For all tests and not full periods it was over $10^{18}$.
+Minimum and maximum variance cannot be correctly set, because it is too big and difficult to estimate. For all tests(with not full periods)it was over $10^{18}$.
 
  \item \textbf{Does the generator meet the requirements that good generators should satisfy? If not, which of the requirements are not satisfied and why?} \\
   The generator meets all requirements for good generators. \\
@@ -175,9 +177,9 @@ Below corner cases were found by $10000$ generator executions with randomized ra
  \item \textbf{What is the minimum(maximum) possible value of the period? Give an example of initial values for which the period is small(large).} \\ 
 Minimum value of period is equal 1, when all seeds are equal 0. Maximum period was not found, because it was greater than $10^9$ for not full evaluation. It is shorter than $2^32$.
  \item \textbf{What is the minimum(maximum) possible mean value? Give an example of initial values for which the average value is small(large).} \\
-Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$.
+Minimum mean value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. Maximum from tests: $2210235410.0306$, seed: $23340$.
  \item \textbf{What is the minimum(maximum) possible variance? Give an example of initial values for which the variance is small(large).} \\
-Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$.
+Minimum variance value is equal 0 for all seeds equal 0 and maximum is undefined, because it is bigger than $10^9$. Maximum from tests: $1.7230232475461\cdot 10^{18}$, seed: $31941$.
 
  \item \textbf{Does the generator meet the requirements that good generators should satisfy? If not, which of the requirements are not satisfied and why?} \\
   The generator does \textbf{not} meet all requirements for good generators. \\
